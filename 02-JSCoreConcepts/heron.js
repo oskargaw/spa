@@ -1,11 +1,16 @@
 // boki trójkąta
-//a = 3;
+a = 3;
 b = 4;
 c = 5;
-h = 7
+h = 7;
+p = (a + b + c) / 2;
 
 // Pole trókąta o bokach ..., ... oraz ... wynosi ... .
 
-let a = () => "aaaa";
+let heron = (a, b, c) => {
+  let wynik = p * Math.sqrt((p - a) * (p - b) * (p - c));
 
-console.log( a() );
+  return wynik;
+};
+
+console.log(heron(a, b, c));
