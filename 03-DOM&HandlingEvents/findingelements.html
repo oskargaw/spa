@@ -1,19 +1,26 @@
 <html>
-
-<head>
+  <head>
     <title>Finding elements</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>Finding elements in DOM</h1>
-    <p id="someTest">Find an element by element id</p>
+    <p id="someText">Find an element by element id</p>
     <p class="important">Find elements by class name</p>
     <p>Find elements by tag name</p>
 
     <script>
-        // a JavaScript code here ...
+      var byTagNameHeading = document.getElementsByTagName("h1");
+      console.log(byTagNameHeading);
 
+      var byId = document.getElementById("someText");
+      console.log(byId);
+
+      var byClassName = document.getElementsByClassName("important");
+      console.log(byClassName);
+
+      var byTagNameParagraphs = document.getElementsByTagName("p");
+      console.log(byTagNameParagraphs);
     </script>
-</body>
-
+  </body>
 </html>
