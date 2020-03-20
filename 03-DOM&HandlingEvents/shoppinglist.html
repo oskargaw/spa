@@ -3,6 +3,7 @@
   <head>
     <title>Shopping List</title>
     <meta charset="UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
 
   <body>
@@ -28,6 +29,12 @@
         listElement.appendChild(listElementText);
         orderedList.appendChild(listElement);
       }
+
+      $(document).ready(function() {
+        $("li").dblclick(function() {
+          $(this).remove();
+        });
+      });
     </script>
   </body>
 </html>
