@@ -1,13 +1,57 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Create DOM elements</title>
-		<meta charset="UTF-8">
-	</head>
-	<body>
-		<script>
-			// a JavaScript code here ...
-			
-		</script>
-	</body>
+  <head>
+    <title>Create DOM elements</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body id="body">
+    <table id="table"></table>
+
+    <script>
+      var table = document.getElementById("table");
+      table.setAttribute(
+        "style",
+        "width: 30%; border: 1px solid black; border-collapse: collapse; text-align: center"
+      );
+
+      var tableFirstRow = document.createElement("tr");
+      tableFirstRow.setAttribute(
+        "style",
+        "border: 1px solid black; border-collapse: collapse"
+      );
+
+      var tableSecondRow = document.createElement("tr");
+      tableSecondRow.setAttribute(
+        "style",
+        "border: 1px solid black; border-collapse: collapse"
+      );
+
+      for (var i = 1; i < 3; i++) {
+        var tableCell = document.createElement("td");
+        var tableCellText = document.createTextNode(i);
+        tableCell.appendChild(tableCellText);
+        tableCell.setAttribute(
+          "style",
+          "border: 1px solid black; border-collapse: collapse"
+        );
+        tableFirstRow.appendChild(tableCell);
+      }
+
+      for (var j = 3; j < 5; j++) {
+        var tableCell = document.createElement("td");
+        var tableCellText = document.createTextNode(j);
+        tableCell.appendChild(tableCellText);
+        tableCell.setAttribute(
+          "style",
+          "border: 1px solid black; border-collapse: collapse"
+        );
+        tableSecondRow.appendChild(tableCell);
+      }
+
+      table.appendChild(tableFirstRow);
+      table.appendChild(tableSecondRow);
+
+      document.getElementById("body").appendChild(table);
+    </script>
+  </body>
 </html>
