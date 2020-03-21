@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exchange rates</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <h1>Exchange rates</h1>
+    <ol id="exchangeRatesList">
+      Click the button to display current exchange rates of EUR, USD and GBP.
+    </ol>
+    <input
+      type="button"
+      value="Display exchange rates"
+      onclick="loadExchangeRates()"
+    />
+    <p id="exchangeRates"></p>
+
+    <script>
+      function loadExchangeRates() {
+        let requestEur = new XMLHttpRequest();
+
+        requestEur.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            displayExchangeRates(requestEur.response);
+          }
+        };
+        requestEur.open(
+          "GET",
+          "http://api.nbp.pl/api/exchangerates/rates/a/eur/?format=json"
+        );
+        requestEur.send();
+
+        let requestUsd = new XMLHttpRequest();
+
+        requestUsd.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            displayExchangeRates(requestUsd.response);
+          }
+        };
+        requestUsd.open(
+          "GET",
+          "http://api.nbp.pl/api/exchangerates/rates/a/usd/?format=json"
+        );
+        requestUsd.send();
+
+        let requestGbp = new XMLHttpRequest();
+
+        requestGbp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            displayExchangeRates(requestGbp.response);
+          }
+        };
+        requestGbp.open(
+          "GET",
+          "http://api.nbp.pl/api/exchangerates/rates/a/gbp/?format=json"
+        );
+        requestGbp.send();
+      }
+
+      function displayExchangeRates(exchangeRate) {
+        let exchangeRateObject = JSON.parse(exchangeRate);
+        let currentExchangeRate = `Current exchange rate ${exchangeRateObject.code} / PLN: ${exchangeRateObject.rates[0].mid}`;
+
+        let exchangeRatesListItem = document.createElement("li");
+        let exchangeRatesListItemText = document.createTextNode(
+          currentExchangeRate
+        );
+        exchangeRatesListItem.appendChild(exchangeRatesListItemText);
+
+        document
+          .getElementById("exchangeRatesList")
+          .appendChild(exchangeRatesListItem);
+      }
+    </script>
+  </body>
+</html>

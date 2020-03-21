@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gold prices</title>
+    <meta charset="UTF-8" />
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="./billboard.js"></script>
+    <link rel="stylesheet" href="./billboard.css" />
+  </head>
+  <body>
+    <h1>Gold prices</h1>
+    <div id="chart"></div>
+    <script>
+      let goldPrices = ["data1"];
+
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          displayResults(request.response);
+        }
+      };
+      request.open(
+        "GET",
+        "http://api.nbp.pl/api/cenyzlota/last/10/?format=json"
+      );
+      request.send();
+
+      function displayResults(results) {
+        let resultsObject = JSON.parse(results);
+        resultsObject.map(result => {
+          goldPrices.push(result.cena);
+        });
+
+        var chart = bb.generate({
+          bindto: "#chart",
+          data: {
+            type: "bar",
+            columns: [goldPrices],
+            types: {
+              data1: "line"
+            }
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

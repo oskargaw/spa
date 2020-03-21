@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Personal data table</title>
+    <meta charset="UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"
+    />
+  </head>
+  <body>
+    <h1>Personal data table</h1>
+    <table id="personalData" class="cell-border" style="width:100%">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Age</th>
+          <th>Country</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody id="personalDataTableBody">
+        <tr>
+          <td>Tiger</td>
+          <td>Nixon</td>
+          <td>61</td>
+          <td>Scotland</td>
+          <td>tigernix@usgs.gov</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      $(document).ready(function() {
+        $("#personalData").DataTable();
+
+        let request = new XMLHttpRequest();
+
+        request.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            displayPersonalData(request.response);
+          }
+        };
+        request.open("GET", "people.json");
+        request.send();
+
+        function displayPersonalData(personalData) {
+          let personalDataObjectsArray = JSON.parse(personalData);
+          personalDataObjectsArray.map(personalData => {
+            let personalDataTableRow = document.createElement("tr");
+
+            let personalDataName = document.createElement("td");
+            let personalDataNameText = document.createTextNode(
+              personalData.name
+            );
+            personalDataName.appendChild(personalDataNameText);
+            personalDataTableRow.appendChild(personalDataName);
+
+            let personalDataSurname = document.createElement("td");
+            let personalDataSurnameText = document.createTextNode(
+              personalData.surname
+            );
+            personalDataSurname.appendChild(personalDataSurnameText);
+            personalDataTableRow.appendChild(personalDataSurname);
+
+            let personalDataAge = document.createElement("td");
+            let personalDataAgeText = document.createTextNode(personalData.age);
+            personalDataAge.appendChild(personalDataAgeText);
+            personalDataTableRow.appendChild(personalDataAge);
+
+            let personalDataCountry = document.createElement("td");
+            let personalDataCountryText = document.createTextNode(
+              personalData.country
+            );
+            personalDataCountry.appendChild(personalDataCountryText);
+            personalDataTableRow.appendChild(personalDataCountry);
+
+            let personalDataEmail = document.createElement("td");
+            let personalDataEmailText = document.createTextNode(
+              personalData.email
+            );
+            personalDataEmail.appendChild(personalDataEmailText);
+            personalDataTableRow.appendChild(personalDataEmail);
+
+            let tableBody = document.getElementById("personalDataTableBody");
+            tableBody.appendChild(personalDataTableRow);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

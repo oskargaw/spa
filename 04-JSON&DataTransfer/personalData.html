@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Personal data</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <h1>Personal data</h1>
+    <p>
+      Click the button to display personal data list.
+    </p>
+    <input
+      type="button"
+      value="Display personal data"
+      onclick="loadPersonalData()"
+    />
+    <ol id="personalDataList"></ol>
+
+    <script>
+      function loadPersonalData() {
+        let request = new XMLHttpRequest();
+
+        request.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            displayPersonalData(request.response);
+          }
+        };
+        request.open("GET", "people.json");
+        request.send();
+      }
+
+      function displayPersonalData(personalData) {
+        let personalDataObjectsArray = JSON.parse(personalData);
+        personalDataObjectsArray.map(personalData => {
+          let personalDataListItem = document.createElement("li");
+          let personalDataListItemText = document.createTextNode(
+            `${personalData.name} ${personalData.surname.toUpperCase()}, ${
+              personalData.country
+            }`
+          );
+          personalDataListItem.appendChild(personalDataListItemText);
+          document
+            .getElementById("personalDataList")
+            .appendChild(personalDataListItem);
+        });
+      }
+    </script>
+  </body>
+</html>
