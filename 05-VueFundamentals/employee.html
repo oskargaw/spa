@@ -1,22 +1,57 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
-<body>
-  <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        name1: 'Adam',
-        name2: 'Jan',
-        surname: 'Majewski',
-        foreigner: false,
-        nationality: 'Polish',
-        pesel: '92021708229',
-        address: 'ul. Szeroka 3, Kraków',
-    });
-  </script>
-
-</body>
+    <style>
+      #app {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <b><span>EMPLOYEE RECORD</span></b>
+      <span>Name 1: {{ polish.name1 }}</span>
+      <span v-show="polish.name2.length > 0">Name 2: {{ polish.name2 }}</span>
+      <span>Surname: {{ polish.surname }}</span>
+      <span v-if="!polish.foreigner">Pesel: {{ polish.pesel }}</span>
+      <span v-else>Nationality: {{ polish.nationality }}</span>
+      <span>Address: {{ polish.address }}</span>
+      <br />
+      <span>Name 1: {{ american.name1 }}</span>
+      <span v-show="american.name2.length > 0"
+        >Name 2: {{ american.name2 }}</span
+      >
+      <span>Surname: {{ american.surname }}</span>
+      <span v-if="!american.foreigner">Pesel: {{ american.pesel }}</span>
+      <span v-else>Nationality: {{ american.nationality }}</span>
+      <span>Address: {{ american.address }}</span>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          polish: {
+            name1: "Adam",
+            name2: "Jan",
+            surname: "Majewski",
+            foreigner: false,
+            nationality: "Polish",
+            pesel: "92021708229",
+            address: "ul. Szeroka 3, Kraków"
+          },
+          american: {
+            name1: "John",
+            name2: "",
+            surname: "Brown",
+            foreigner: true,
+            nationality: "American",
+            pesel: "",
+            address: "Holland Drive 4, Chicago, USA"
+          }
+        }
+      });
+    </script>
+  </body>
 </html>
