@@ -11,25 +11,23 @@
   </head>
   <body>
     <div id="app">
-      <span>DO WYKONANIA</span>
-      <ol>
-        <li v-for="item in sortedTodo">{{ item }}</li>
-      </ol>
+      <div>
+        <span>Student's grades: </span>
+        <span v-for="item in grades">{{ item }} </span>
+      </div>
+      <div>
+        <span>Average grade: {{ average.toFixed(2) }}</span>
+      </div>
     </div>
     <script>
       var app = new Vue({
         el: "#app",
         data: {
-          todo: [
-            "Purchase two tickets to cinema",
-            "Feed cat",
-            "Pay cable bill",
-            "Go shopping"
-          ]
+          grades: [4, 5, 3, 2, 3, 5, 5, 2, 4]
         },
         computed: {
-          sortedTodo: function() {
-            return this.todo.sort();
+          average: function() {
+            return this.grades.reduce((a, b) => a + b, 0) / this.grades.length;
           }
         }
       });
