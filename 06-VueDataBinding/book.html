@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      #app {
+        width: 10vw;
+        display: flex;
+        flex-direction: column;
+      }
+      span {
+        margin-top: 20px;
+      }
+      button {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <span>Book title:</span>
+      <input type="text" v-model="title" />
+      <span>Author's name:</span>
+      <input type="text" v-model="name" />
+      <span>Author's surname:</span>
+      <input type="text" v-model="surname" />
+      <button v-on:click="displayNameInConsole">Save</button>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          title: "",
+          name: "",
+          surname: "",
+        },
+        methods: {
+          displayNameInConsole: function ($event) {
+            console.log("Book title: " + this.title);
+            console.log("Author's name: " + this.name);
+            console.log("Author's surname: " + this.surname);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

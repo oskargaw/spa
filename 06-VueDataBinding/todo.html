@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
-<body>
-  <div id="app">
-    <h1>TO DO APP</h1>
-    <span>To do: </span>
-    <input type="text" v-model="todo">
-    <button type="button" @click="add()">Add</button>
-    <h3>To Do List</h3>
-    <ol>
-      <li>...</li>
-      <li>...</li>
-      <li>...</li>
-    </ol>
-  </div>
-  <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        todo: '',
-        todos: []
-      },
-      methods: {
-        add: function() {
-          this.todos.push(this.todo);
-        }
-      }
-    });
-  </script>
-</body>
+  </head>
+  <body>
+    <div id="app">
+      <h1>TO DO APP</h1>
+      <span>To do: </span>
+      <input type="text" v-model="todo" />
+      <button type="button" v-on:click="add()">Add</button>
+      <h3>To Do List</h3>
+      <ol>
+        <li v-for="item in todos" v-on:dblclick="remove(item)">{{ item }}</li>
+      </ol>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          todo: "",
+          todos: [],
+        },
+        methods: {
+          add: function () {
+            this.todos.push(this.todo);
+          },
+          remove: function (index) {
+            this.todos.splice(index, 1);
+          },
+        },
+      });
+    </script>
+  </body>
 </html>

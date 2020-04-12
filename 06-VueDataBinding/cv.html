@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      div {
+        margin-top: 24px;
+        margin-bottom: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <span>Imię:</span>
+        <input type="text" v-model="personalData.name" />
+      </div>
+
+      <div>
+        <span>Nazwisko:</span>
+        <input type="text" v-model="personalData.surname" />
+      </div>
+
+      <div>
+        <span>Wiek:</span>
+        <input type="number" v-model.number="personalData.age" />
+      </div>
+
+      <div>
+        <span>Płeć:</span>
+        <input
+          type="radio"
+          id="kobieta"
+          value="kobieta"
+          v-model="personalData.gender"
+        />
+        <label for="kobieta">Kobieta</label>
+        <input
+          type="radio"
+          id="mezczyzna"
+          value="mezczyzna"
+          v-model="personalData.gender"
+        />
+        <label for="mezczyzna">Męzczyzna</label>
+      </div>
+
+      <div>
+        <span>Wykształcenie:</span>
+        <select v-model="personalData.education">
+          <option disabled value="">Wybierz:</option>
+          <option>brak</option>
+          <option>podstawowe</option>
+          <option>średnie</option>
+          <option>wyzsze</option>
+        </select>
+      </div>
+
+      <div>
+        <span>Umiejętności:</span>
+        <select v-model="personalData.skills">
+          <option disabled value="">Wybierz umiejętności:</option>
+          <option>obsługa komputera</option>
+          <option>prawo jazdy</option>
+          <option>kreatywność</option>
+          <option>praca w zespole</option>
+        </select>
+      </div>
+
+      <button v-on:click="saveInLocalStorage">
+        Save data to local storage
+      </button>
+      <button v-on:click="retrieveFromLocalStorage">
+        Retrieve data from local storage
+      </button>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          personalData: {
+            name: "",
+            surname: "",
+            age: 0,
+            gender: "",
+            education: "",
+            skills: "",
+          },
+        },
+        methods: {
+          saveInLocalStorage: function ($event) {
+            localStorage.setItem("data", JSON.stringify(this.personalData));
+          },
+          retrieveFromLocalStorage: function ($event) {
+            JSON.parse(localStorage.setItem("data"));
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

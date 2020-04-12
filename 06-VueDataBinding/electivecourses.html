@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      #app {
+        width: 50vw;
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <input
+          type="checkbox"
+          id="pracowniaProgramowaniaJeden"
+          value="Pracownia Programowania I"
+          v-model="courses"
+        />
+        <label for="pracowniaProgramowaniaJeden"
+          >Pracownia Programowania I</label
+        >
+      </div>
+
+      <div>
+        <input
+          type="checkbox"
+          id="pracowniaProgramowaniaDwa"
+          value="Pracownia Programowania II"
+          v-model="courses"
+        />
+        <label for="pracowniaProgramowaniaDwa"
+          >Pracownia Programowania II</label
+        >
+      </div>
+
+      <div>
+        <input
+          type="checkbox"
+          id="pracowniaProgramowaniaTrzy"
+          value="Pracownia Programowania III"
+          v-model="courses"
+        />
+        <label for="pracowniaProgramowaniaTrzy"
+          >Pracownia Programowania III</label
+        >
+      </div>
+
+      <div>
+        <input
+          type="checkbox"
+          id="pracowniaProgramowaniaCztery"
+          value="Pracownia Programowania IV"
+          v-model="courses"
+        />
+        <label for="pracowniaProgramowaniaCztery"
+          >Pracownia Programowania IV</label
+        >
+      </div>
+
+      <div>
+        <input
+          type="checkbox"
+          id="pracowniaProgramowaniaPiec"
+          value="Pracownia Programowania V"
+          v-model="courses"
+        />
+        <label for="pracowniaProgramowaniaPiec"
+          >Pracownia Programowania V</label
+        >
+      </div>
+      <p>Liczba wybranych kursów: {{ courses.length }}</p>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          courses: [],
+        },
+      });
+    </script>
+  </body>
+</html>
