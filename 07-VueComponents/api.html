@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+      img {
+        width: 600px;
+        height: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <api-content></api-content>
+    </div>
+
+    <script type="text/x-template" id="api-content-template">
+      <div>
+          <img :src="randomDog" alt="Random picture of dogs">
+      </div>
+    </script>
+
+    <script src="api.js"></script>
+  </body>
+</html>

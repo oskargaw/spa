@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h3>Ulubione filmy</h3>
+      <film-item
+        :director="films[0].director"
+        :title="films[0].title"
+        :year="films[0].year"
+      ></film-item>
+      <film-item
+        :director="films[1].director"
+        :title="films[1].title"
+        :year="films[1].year"
+      ></film-item>
+      <film-item
+        :director="films[2].director"
+        :title="films[2].title"
+        :year="films[2].year"
+      ></film-item>
+    </div>
+
+    <script type="text/x-template" id="film-item-template">
+      <h4>{{director}}: "{{title}}", {{year}}</h4>
+    </script>
+
+    <script src="films.js"></script>
+  </body>
+</html>

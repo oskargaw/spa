@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <counter-button></counter-button>
+    </div>
+
+    <script type="text/x-template" id="counter-button-template">
+      <div>
+          <h4>{{ counter }}</h4>
+          <button @click="subtract">Odejmij</button>
+          <button @click="add">Dodaj</button>
+      </div>
+    </script>
+
+    <script src="counter.js"></script>
+  </body>
+</html>

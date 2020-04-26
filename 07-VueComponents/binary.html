@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <binary-numbers-list
+        v-for="number in numbers"
+        :decimal="number"
+      ></binary-numbers-list>
+    </div>
+
+    <script type="text/x-template" id="binary-numbers-list-template">
+      <div>
+          <h4>{{ decimal }}(10) = {{ binaryNumber }}(2)</h4>
+      </div>
+    </script>
+
+    <script src="binary.js"></script>
+  </body>
+</html>
